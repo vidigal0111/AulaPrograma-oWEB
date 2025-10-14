@@ -1,0 +1,52 @@
+.title{
+    font-family: cursive;
+}
+
+h1{
+    font-family: Georgia, 'Times New Roman', Times, serif  ;
+    color: #e4514c;
+    
+}   
+
+h2{
+     font-family: Georgia, 'Times New Roman', Times, serif  ;   
+    color: #e4514c;
+}
+p{
+    color: #f0d4d4;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    text-align: center;
+font-family: sans-serif;
+}
+body{
+    background-image: url('../imagens/nosso-grande-dia.jpeg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+text-align: center;
+position : relative;
+
+}  
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;   
+    background-color: rgba(0, 0, 0, 0.5); /* Cor de fundo com opacidade */
+    z-index: -1; /* Coloca o fundo atrás do conteúdo */}   
+
+.footer{
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #555;
+    text-align: center;
+}
+img{
+    border: 2px solid #611411;
+    border-radius: 10px;
+    margin: 10px 0;
+}
