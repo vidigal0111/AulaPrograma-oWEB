@@ -1,52 +1,86 @@
-.title{
-    font-family: cursive;
+
+body {
+    font-family: sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
 }
 
-h1{
-    font-family: Georgia, 'Times New Roman', Times, serif  ;
-    color: #e4514c;
-    
-}   
 
-h2{
-     font-family: Georgia, 'Times New Roman', Times, serif  ;   
-    color: #e4514c;
+.carrossel-aumigos {
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    margin: 40px auto; 
+    overflow: hidden; 
 }
-p{
-    color: #f0d4d4;
-    line-height: 1.6;
-    margin-bottom: 15px;
-    text-align: center;
-font-family: sans-serif;
-}
-body{
-    background-image: url('../imagens/nosso-grande-dia.jpeg');
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-text-align: center;
-position : relative;
 
-}  
-body::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
+.carrossel-imagens {
+    display: flex; 
+}
+
+.carrossel-imagens img {
     width: 100%;
-    height: 100%;   
-    background-color: rgba(0, 0, 0, 0.5); /* Cor de fundo com opacidade */
-    z-index: -1; /* Coloca o fundo atrás do conteúdo */}   
-
-.footer{
-    margin-top: 5px;
-    font-size: 0.9em;
-    color: #555;
-    text-align: center;
+    flex-shrink: 0; 
 }
-img{
-    border: 2px solid #611411;
-    border-radius: 10px;
-    margin: 10px 0;
+
+/* Estilos dos Botões do Carrossel */
+.btn-anterior, .btn-proximo {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* O truque para centralizar perfeitamente na vertical */
+    
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo preto com 50% de transparência */
+    color: white;
+    border: none;
+    border-radius: 50%; /* Deixa o botão redondo */
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer; /* Muda o cursor para uma "mãozinha" ao passar por cima */
+    transition: background-color 0.3s ease; /* Efeito suave na mudança de cor */
+}
+
+.btn-anterior:hover, .btn-proximo:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Fica mais escuro ao passar o mouse */
+}
+
+.btn-anterior {
+    left: 10px; /* Posiciona a 10px da borda esquerda */
+}
+
+.btn-proximo {
+    right: 10px; /* Posiciona a 10px da borda direita */
+}
+
+/* Estilos do Cabeçalho */
+header {
+    display: flex;
+    justify-content: space-between; /* Coloca um item no início e outro no fim */
+    align-items: center; /* Alinha verticalmente os itens no centro */
+    padding: 10px 40px; /* Adiciona um respiro interno */
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra sutil */
+}
+
+.logo {
+    height: 70px; /* Ajuste a altura do logo conforme necessário */
+}
+
+header nav ul {
+    list-style: none; /* Remove as bolinhas da lista */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Alinha os itens do menu lado a lado */
+}
+
+header nav li {
+    margin-left: 20px; /* Adiciona um espaço entre os itens do menu */
+}
+
+header nav a {
+    text-decoration: none; /* Remove o sublinhado dos links */
+    color: #555;
+    font-weight: bold;
 }
