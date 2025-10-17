@@ -7,6 +7,46 @@ body {
     padding: 0;
 }
 
+/* =================== */
+/* Estilos do Cabeçalho */
+/* =================== */
+
+header {
+    display: flex; /* A MÁGICA COMEÇA AQUI! */
+    justify-content: space-between; /* Coloca espaço entre os itens */
+    align-items: center; /* Alinha os itens verticalmente no centro */
+    padding: 15px 40px; /* 15px de espaço em cima/baixo, 40px nos lados */
+    background-color: #ffffff; /* Fundo branco */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil para destacar */
+}
+
+.logo {
+    height: 60px; /* Controle o tamanho do seu logo aqui */
+}
+
+header nav ul {
+    list-style: none; /* Remove as "bolinhas" da lista */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Usamos flex aqui também para alinhar os itens do menu */
+}
+
+header nav li {
+    margin-left: 30px; /* Cria um espaço entre os links do menu */
+}
+
+header nav a {
+    text-decoration: none; /* Remove o sublinhado dos links */
+    color: #333; /* Cor do texto escura */
+    font-weight: bold;
+    font-size: 1em;
+    transition: color 0.3s ease; /* Efeito suave na cor ao passar o mouse */
+}
+
+header nav a:hover {
+    color: #e5832a; /* Uma cor de destaque, talvez um laranja? */
+}
+
 
 .carrossel-aumigos {
     position: relative;
@@ -20,9 +60,45 @@ body {
     display: flex; 
 }
 
-.carrossel-imagens img {
+/* As responsabilidades de largura agora são do container */
+.imagem-container {
+    position: relative; /* O "universo" para a legenda */
     width: 100%;
-    flex-shrink: 0; 
+    flex-shrink: 0;
+}
+
+/* A imagem só precisa preencher o novo container */
+.imagem-container img {
+    width: 100%;
+    display: block; /* Remove pequenos espaços que podem aparecer embaixo da imagem */
+}
+
+/* A estilização da nossa legenda translúcida */
+.info-cao {
+    position: absolute; /* Flutua sobre o container */
+    bottom: 0; /* Cola na parte de baixo */
+    left: 0;
+    width: 100%; /* Ocupa toda a largura */
+    
+    background-color: rgba(0, 0, 0, 0.6); /* Preto com 60% de opacidade. ESSA É A MÁGICA! */
+    color: white;
+    padding: 12px;
+    
+    /* Para garantir que o texto não fique colado nas bordas */
+    box-sizing: border-box; 
+}
+
+/* Ajustes finos no texto dentro da legenda */
+.info-cao h3 {
+    margin: 0 0 5px 0; /* Remove margem padrão e adiciona um espacinho embaixo */
+    font-size: 1.2em; /* Deixa o nome um pouco maior */
+    text-align: center;
+}
+
+.info-cao p {
+    margin: 0;
+    font-size: 0.9em;
+    text-align: center;
 }
 
 /* Estilos dos Botões do Carrossel */
@@ -65,7 +141,7 @@ header {
 }
 
 .logo {
-    height: 70px; /* Ajuste a altura do logo conforme necessário */
+    height: 170px; /* Ajuste a altura do logo conforme necessário */
 }
 
 header nav ul {
@@ -83,4 +159,20 @@ header nav a {
     text-decoration: none; /* Remove o sublinhado dos links */
     color: #555;
     font-weight: bold;
+}
+/* Classe para limitar a largura e centralizar o conteúdo */
+.container {
+    width: 90%; /* Ocupa 90% da largura da tela */
+    max-width: 1100px; /* Mas no máximo 1100px */
+    margin: 0 auto; /* A mágica para centralizar horizontalmente */
+}
+main section {
+    padding: 70px 0; /* Espaçamento em cima e embaixo das seções */
+}
+
+h2{
+    text-align: center;
+    color: #333;
+    margin-top: 40px;
+    font-size: 2em;
 }
