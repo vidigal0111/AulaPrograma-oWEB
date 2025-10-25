@@ -1,178 +1,541 @@
+:root {
+    --cor-destaque: #eec187; /* Laranja "caramelo" amigável */
+    --cor-destaque-forte: #d16b16; /* Laranja mais forte para hover */
+    --cor-texto: #333;
+}
 
 body {
     font-family: sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #ffffff;
+    color: var(--cor-texto);
     margin: 0;
     padding: 0;
 }
 
-/* =================== */
-/* Estilos do Cabeçalho */
-/* =================== */
+/* ======================================= */
+/* Estilos do Cabeçalho (VERSÃO FINAL) */
+/* ======================================= */
 
 header {
-    display: flex; /* A MÁGICA COMEÇA AQUI! */
-    justify-content: space-between; /* Coloca espaço entre os itens */
-    align-items: center; /* Alinha os itens verticalmente no centro */
-    padding: 15px 40px; /* 15px de espaço em cima/baixo, 40px nos lados */
-    background-color: #ffffff; /* Fundo branco */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil para destacar */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: var(--cor-destaque); /* A cor que você quer! */
 }
 
 .logo {
-    height: 60px; /* Controle o tamanho do seu logo aqui */
+    height: 200px; /* Sinta-se à vontade para ajustar */
 }
 
 header nav ul {
-    list-style: none; /* Remove as "bolinhas" da lista */
+    list-style: none;
     margin: 0;
     padding: 0;
-    display: flex; /* Usamos flex aqui também para alinhar os itens do menu */
+    display: flex;
 }
 
 header nav li {
-    margin-left: 30px; /* Cria um espaço entre os links do menu */
+    margin-left: 30px;
 }
 
 header nav a {
-    text-decoration: none; /* Remove o sublinhado dos links */
-    color: #333; /* Cor do texto escura */
+    text-decoration: none;
     font-weight: bold;
     font-size: 1em;
-    transition: color 0.3s ease; /* Efeito suave na cor ao passar o mouse */
+    transition: color 0.3s ease;
+    color: #5f3621; /* Cor do texto ajustada para o fundo colorido */
 }
 
 header nav a:hover {
-    color: #e5832a; /* Uma cor de destaque, talvez um laranja? */
+    color: rgba(233, 120, 14, 0.8);
 }
 
+/* ======================================= */
+/* Estilos do Conteúdo Principal */
+/* ======================================= */
 
-.carrossel-aumigos {
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto; /* A mágica para centralizar horizontalmente */
+}
+
+main section {
+    padding: 60px 0; /* Espaçamento em cima e embaixo das seções */
+}
+
+main section:nth-of-type(odd) {
+
+}
+
+h2 {
+    text-align: center;
+    color: var(#da6b11);
+    margin-top: 0;
+    margin-bottom: 40px;
+    font-size: 2em;
+}
+
+/* ======================================= */
+/* Estilos da Seção Quem Somos (Com Imagem) */
+/* ======================================= */
+
+.quem-somos-conteudo {
+    display: flex; /* Coloca os filhos (texto e imagem) lado a lado */
+    align-items: center; /* Centraliza verticalmente o texto e a imagem */
+    gap: 40px; /* Cria um bom espaço entre o texto e a imagem */
+    margin-top: 40px; /* Espaço entre o título e o conteúdo */
+    flex-wrap: wrap; /* Permite que os itens quebrem a linha em telas pequenas */
+}
+
+.quem-somos-texto {
+    flex: 1; /* Faz o texto ocupar o espaço restante */
+    min-width: 300px; /* Garante que o texto não fique muito espremido */
+    text-align: justify; /* Alinha o texto de forma justificada */
+    line-height: 1.6; /* Aumenta o espaçamento entre as linhas para melhor leitura */
+}
+
+.quem-somos-imagem {
+    flex: 1; /* Faz a imagem ocupar o espaço restante */
+    max-width: 500px; /* Limita o tamanho máximo da imagem */
+    text-align: center; /* Centraliza a imagem se ela for menor que o espaço */
+}
+
+.quem-somos-imagem img {
+    max-width: 100%; /* Garante que a imagem nunca ultrapasse o tamanho de sua caixa */
+    height: auto; /* Mantém a proporção da imagem */
+    border-radius: 8px; /* Adiciona bordas arredondadas à imagem */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave para destacar */
+}
+
+/* ======================================= */
+/* ESTILOS DO CARROSSEL */
+/* ======================================= */
+
+.carrossel-container {
     position: relative;
-    width: 80%;
+    width: 100%;
     max-width: 600px;
-    margin: 40px auto; 
-    overflow: hidden; 
+    margin: 40px auto;
+    overflow: hidden;
 }
 
-.carrossel-imagens {
-    display: flex; 
+.carrossel-trilho {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
 }
 
-/* As responsabilidades de largura agora são do container */
-.imagem-container {
-    position: relative; /* O "universo" para a legenda */
-    width: 100%;
+.carrossel-item {
+    position: relative;
+    min-width: 100%;
     flex-shrink: 0;
+    background-color: #222;
 }
 
-/* A imagem só precisa preencher o novo container */
-.imagem-container img {
+.carrossel-item img {
     width: 100%;
-    display: block; /* Remove pequenos espaços que podem aparecer embaixo da imagem */
+    display: block;
+    height: 450px;
+    object-fit: cover;
 }
 
-/* A estilização da nossa legenda translúcida */
 .info-cao {
-    position: absolute; /* Flutua sobre o container */
-    bottom: 0; /* Cola na parte de baixo */
+    position: absolute;
+    bottom: 0;
     left: 0;
-    width: 100%; /* Ocupa toda a largura */
-    
-    background-color: rgba(0, 0, 0, 0.6); /* Preto com 60% de opacidade. ESSA É A MÁGICA! */
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
     color: white;
     padding: 12px;
-    
-    /* Para garantir que o texto não fique colado nas bordas */
-    box-sizing: border-box; 
-}
-
-/* Ajustes finos no texto dentro da legenda */
-.info-cao h3 {
-    margin: 0 0 5px 0; /* Remove margem padrão e adiciona um espacinho embaixo */
-    font-size: 1.2em; /* Deixa o nome um pouco maior */
+    box-sizing: border-box;
     text-align: center;
 }
 
-.info-cao p {
+.info-cao h3, .info-cao p {
     margin: 0;
-    font-size: 0.9em;
-    text-align: center;
+    padding: 2px;
 }
 
-/* Estilos dos Botões do Carrossel */
-.btn-anterior, .btn-proximo {
+.carrossel-btn {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%); /* O truque para centralizar perfeitamente na vertical */
-    
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo preto com 50% de transparência */
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
-    border-radius: 50%; /* Deixa o botão redondo */
+    border-radius: 50%;
     width: 40px;
     height: 40px;
     font-size: 20px;
-    cursor: pointer; /* Muda o cursor para uma "mãozinha" ao passar por cima */
-    transition: background-color 0.3s ease; /* Efeito suave na mudança de cor */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.btn-anterior:hover, .btn-proximo:hover {
-    background-color: rgba(0, 0, 0, 0.8); /* Fica mais escuro ao passar o mouse */
+.carrossel-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
-.btn-anterior {
-    left: 10px; /* Posiciona a 10px da borda esquerda */
+.btn-prev {
+    left: 10px;
 }
 
-.btn-proximo {
-    right: 10px; /* Posiciona a 10px da borda direita */
+.btn-next {
+    right: 10px;
 }
-
-/* Estilos do Cabeçalho */
-header {
+footer {
+    /* MUDE ESTA LINHA: */
+    background-color: var(--cor-destaque-forte); /* <-- DE "--cor-destaque" PARA "--cor-destaque-forte" */
+    
+    color: #ffffff;
+    padding-top: 50px;
+}
+.footer-coluna {
+    flex: 1;
+    min-width: 250px;
+    
+    /* ADICIONE ESTAS TRÊS LINHAS PARA CENTRALIZAR O CONTEÚDO DA COLUNA */
     display: flex;
-    justify-content: space-between; /* Coloca um item no início e outro no fim */
-    align-items: center; /* Alinha verticalmente os itens no centro */
-    padding: 10px 40px; /* Adiciona um respiro interno */
-    background-color: white;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra sutil */
+    flex-direction: column;
+    align-items: center; 
 }
 
-.logo {
-    height: 170px; /* Ajuste a altura do logo conforme necessário */
-}
-
-header nav ul {
-    list-style: none; /* Remove as bolinhas da lista */
-    margin: 0;
-    padding: 0;
-    display: flex; /* Alinha os itens do menu lado a lado */
-}
-
-header nav li {
-    margin-left: 20px; /* Adiciona um espaço entre os itens do menu */
-}
-
-header nav a {
-    text-decoration: none; /* Remove o sublinhado dos links */
-    color: #555;
-    font-weight: bold;
-}
-/* Classe para limitar a largura e centralizar o conteúdo */
-.container {
-    width: 90%; /* Ocupa 90% da largura da tela */
-    max-width: 1100px; /* Mas no máximo 1100px */
-    margin: 0 auto; /* A mágica para centralizar horizontalmente */
-}
-main section {
-    padding: 70px 0; /* Espaçamento em cima e embaixo das seções */
-}
-
-h2{
+/* Estilos para a página de História */
+.historia-conteudo {
     text-align: center;
-    color: #333;
-    margin-top: 40px;
-    font-size: 2em;
 }
+
+.historia-conteudo img {
+    max-width: 60%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.historia-conteudo p {
+    font-size: 1.1em;
+    line-height: 1.7;
+    text-align: justify;
+    margin-bottom: 20px;
+}
+/* ======================================= */
+/* Estilos da Página "Nossa História" */
+/* ======================================= */
+
+/* Um container de leitura confortável para todas as seções */
+.historia-conteudo,
+.nossavisao-conteudo,
+.valores-conteudo,
+.comoajudar-conteudo {
+    max-width: 800px; /* Limita a largura para fácil leitura */
+    margin: 0 auto; /* Centraliza o container */
+    padding: 0 15px; /* Respiro lateral (para celular) */
+}
+
+/* Estilo para os parágrafos de texto longos */
+.historia-conteudo p {
+    font-size: 1.1em;
+    line-height: 1.7; /* Espaçamento entre linhas TOP */
+    text-align: justify; /* Texto alinhado como livro */
+    margin-bottom: 20px;
+}
+
+/* Estilo para a lista de dados da história */
+.historia-conteudo ul {
+    list-style: '🐾'; /* Ícone de patinha na lista! */
+    padding-left: 30px;
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin: 20px 0;
+}
+
+/* Estilo para a seção "Nossa Visão" (centralizada) */
+.nossavisao-conteudo {
+    text-align: center;
+    font-size: 1.2em;
+    line-height: 1.6;
+    font-style: italic; /* Estilo de "citação" para a visão */
+}
+
+/* Estilos para as listas ("Valores" e "Como Ajudar") */
+.valores-conteudo ul,
+.comoajudar-conteudo ul {
+    list-style: none; /* Remove as bolinhas pretas */
+    padding-left: 0;
+    font-size: 1.05em;
+    line-height: 1.7;
+}
+
+.valores-conteudo li,
+.comoajudar-conteudo li {
+    position: relative;
+    padding-left: 35px; /* Espaço para o emoji/ícone */
+    margin-bottom: 15px;
+}
+
+/* Adicionando ícones personalizados com CSS! */
+.valores-conteudo li::before,
+.comoajudar-conteudo li::before {
+    position: absolute;
+    left: 0;
+    top: 0px;
+    font-size: 1.2em;
+}
+
+/* Ícones específicos */
+.valores-conteudo li::before {
+    content: '✨';
+}
+
+.comoajudar-conteudo li::before {
+    content: '📦';
+}
+
+
+/* ======================================= */
+/* Estilos da Página "Cadastro" (Estilo "Viver") */
+/* ======================================= */
+
+.cadastro-container {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 40px; 
+    margin-top: 30px;
+}
+
+.cadastro-formulario {
+    flex: 1; /* Ocupa 50% */
+    min-width: 300px;
+}
+
+.cadastro-info {
+    flex: 1; /* Ocupa 50% */
+    min-width: 300px;
+}
+
+.cadastro-info p {
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+/* --- Novo Estilo de Formulário (Inspirado na Ref.) --- */
+
+.formulario-padrao {
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario-padrao label {
+    font-weight: bold;
+    color: #555;
+    margin-top: 15px; 
+    margin-bottom: 8px; /* Mais espaço entre o label e o campo */
+}
+
+/* O "Pulo do Gato" - Campos Arredondados */
+.formulario-padrao input[type="text"],
+.formulario-padrao input[type="email"],
+.formulario-padrao input[type="tel"],
+.formulario-padrao select,
+.formulario-padrao textarea {
+    width: 100%;
+    padding: 18px 20px; /* Mais "gordinho" */
+    border: 1px solid #ddd; /* Borda mais suave */
+    border-radius: 30px; /* SUPER ARREDONDADO! */
+    font-size: 1em;
+    font-family: sans-serif; /* Garante a mesma fonte */
+    box-sizing: border-box; 
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Efeito ao clicar no campo */
+.formulario-padrao input:focus,
+.formulario-padrao select:focus,
+.formulario-padrao textarea:focus {
+    outline: none;
+    border-color: var(--cor-destaque);
+    box-shadow: 0 0 8px rgba(229, 131, 42, 0.3); /* Sombra suave laranja */
+}
+
+.formulario-padrao textarea {
+    border-radius: 20px; /* Um pouco menos redondo para textareas */
+}
+
+/* O Novo Botão de Enviar */
+.btn-enviar {
+    background-color: var(--cor-destaque); /* Nossa cor laranja */
+    color: white;
+    padding: 18px 20px;
+    border: none;
+    border-radius: 30px; /* SUPER ARREDONDADO! */
+    width: 100%; /* Ocupa 100% da coluna */
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.btn-enviar:hover {
+    background-color: var(--cor-destaque-forte);
+}
+
+/* --- Estilo do Mapa --- */
+.mapa-container { /* Vamos usar um container para o mapa */
+    width: 100%;
+    height: 450px; /* Altura maior */
+    border-radius: 12px; /* Borda arredondada no mapa */
+    overflow: hidden; /* Força o mapa a ter as bordas arredondadas */
+    border: 1px solid #ddd;
+}
+/* ======================================= */
+/* Estilos do Carrossel de Curiosidades */
+/* ======================================= */
+.curiosidades-container {
+    position: relative;
+    width: 100%;
+    max-width: 950px;
+    margin: 40px auto;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fdfdfd;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.curiosidades-trilho {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.curiosidades-item {
+    min-width: 100%;
+    flex-shrink: 0;
+}
+
+.curiosidades-item img {
+    width: 100%;
+    height: 650px;
+    object-fit: cover;
+    display: block;
+}
+
+.curiosidades-texto {
+    padding: 25px;
+    text-align: center;
+}
+
+.curiosidades-texto h3 {
+    font-size: 1.3em;
+    color: var(--cor-destaque);
+    margin: 0 0 10px 0;
+}
+
+.curiosidades-texto p {
+    font-size: 1em;
+    line-height: 1.5;
+    text-align: center;
+    margin: 0;
+}
+
+/* Estilo dos Botões (Novas Classes) */
+.curiosidades-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.7);
+    color: #333;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.curiosidades-btn:hover {
+    background-color: rgba(255, 255, 255, 1);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.btn-cur-prev {
+    left: 10px;
+}
+
+.btn-cur-next {
+    right: 10px;
+}
+/* ======================================= */
+/* REGRAS DE RESPONSIVIDADE */
+/* ======================================= */
+
+@media (max-width: 768px) {
+
+    /* --- Ajustes no Cabeçalho --- */
+    header {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    header nav ul {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    header nav li {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    /* --- Ajustes no Conteúdo Principal --- */
+    main section {
+        padding: 40px 0;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    /* --- Ajustes no Carrossel --- */
+    .carrossel-container {
+        width: 100%;
+    }
+
+    .carrossel-item img {
+        height: 350px;
+    }
+    @media (max-width: 768px) {
+    /* ... (outras regras que já estão lá) ... */
+
+    /* --- Ajustes na Seção Quem Somos para Mobile --- */
+    .quem-somos-conteudo {
+        flex-direction: column; /* Empilha texto e imagem */
+        gap: 20px; /* Ajusta o espaço */
+        text-align: center; /* Centraliza o texto */
+    }
+
+    .quem-somos-texto {
+        text-align: center; /* Garante que o texto fique centralizado no mobile */
+    }
+
+    .quem-somos-imagem {
+        max-width: 90%; /* A imagem ocupa mais espaço no mobile */
+    }
+}
+@media (max-width: 768px) {
+    /* ... (outras regras mobile aqui) ... */
+
+    /* --- Ajustes na Página Cadastro --- */
+    .cadastro-container {
+        flex-direction: column; /* Empilha as colunas */
+        gap: 40px;
+    }
+}
+}
+
