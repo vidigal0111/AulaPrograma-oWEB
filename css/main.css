@@ -1,55 +1,161 @@
 :root {
-    --cor-destaque: #eec187; /* Laranja "caramelo" amigável */
-    --cor-destaque-forte: #d16b16; /* Laranja mais forte para hover */
-    --cor-texto: #333;
+    /* == Paleta de Cores == */
+    --cor-primaria: #eec187;        /* Laranja Principal (Cabeçalho) */
+    --cor-primaria-escura: #d16b16; /* Laranja Forte (Rodapé, Hover) */
+    --cor-primaria-clara: #f6e0c4;  /* Laranja bem suave */
+    --cor-secundaria: #7fadd1;     /* Azul suave do logo */
+    --cor-secundaria-escura: #5a8aa9; /* Azul mais forte */
+    --cor-texto: #333333;          /* Preto suave para textos */
+    --cor-texto-claro: #555555;    /* Cinza escuro */
+    --cor-fundo: #ffffff;          /* Branco */
+    --cor-fundo-alternativo: #f8f8f8; /* Cinza bem claro */
+    --cor-borda: #dddddd;          /* Cinza para bordas */
+    --cor-sucesso: #28a745;        /* Verde */
+    --cor-erro: #dc3545;           /* Vermelho */
+
+    /* == Tipografia == */
+    --fonte-principal: sans-serif;
+    --tamanho-base: 1rem;       /* ~16px */
+    --tamanho-pequeno: 0.875rem; /* ~14px */
+    --tamanho-link-menu: 1rem;
+    --tamanho-botao: 1.1rem;
+    --tamanho-h3: 1.5rem;      /* ~24px */
+    --tamanho-h2: 2rem;        /* ~32px */
+    --tamanho-h1: 2.5rem;      /* ~40px */
+    --tamanho-logo-header: 10rem; /* 80px */
+    --altura-header: 7rem; /* Ajustado para caber o logo */
+
+
+    /* == Espaçamento Modular (Base 8px) == */
+    --espaco-xs: 0.5rem;   /* 8px */
+    --espaco-s: 1rem;      /* 16px */
+    --espaco-m: 1.5rem;    /* 24px */
+    --espaco-l: 2rem;      /* 32px */
+    --espaco-xl: 3rem;     /* 48px */
+    --espaco-xxl: 4rem;    /* 64px */
 }
 
 body {
-    font-family: sans-serif;
-    background-color: #ffffff;
+    font-family: var(--fonte-principal);
+    background-color: var(--cor-fundo);
     color: var(--cor-texto);
     margin: 0;
     padding: 0;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "header"
+        "main"
+        "footer";
+    min-height: 100vh;
 }
 
-/* ======================================= */
-/* Estilos do Cabeçalho (VERSÃO FINAL) */
-/* ======================================= */
-
 header {
+    grid-area: header;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 40px;
+    padding: var(--espaco-s) var(--espaco-xl);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    background-color: var(--cor-destaque); /* A cor que você quer! */
+    background-color: var(--cor-primaria);
+    position: relative;
+    height: var(--altura-header);
 }
+
+main {
+    grid-area: main;
+    width: 100%;
+}
+
+footer {
+    grid-area: footer;
+}
+
+/* ======================================= */
+/* Estilos do Cabeçalho (VERSÃO HAMBÚRGUER) */
+/* ======================================= */
 
 .logo {
-    height: 200px; /* Sinta-se à vontade para ajustar */
+    height: var(--tamanho-logo-header);
+    width: auto;
+    object-fit: contain;
 }
 
-header nav ul {
+.btn-abrir-menu,
+.btn-fechar-menu {
+    display: none;
+    border: none;
+    background: none;
+    color: var(--cor-fundo);
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+.menu-principal > ul { /* <-- O '>' (filho direto) é crucial! */
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
 }
 
-header nav li {
-    margin-left: 30px;
+.menu-principal li {
+    margin-left: var(--espaco-l);
 }
 
-header nav a {
+.menu-principal a {
     text-decoration: none;
     font-weight: bold;
-    font-size: 1em;
+    font-size: var(--tamanho-link-menu);
     transition: color 0.3s ease;
-    color: #5f3621; /* Cor do texto ajustada para o fundo colorido */
+    color: var(--cor-fundo);
 }
 
-header nav a:hover {
-    color: rgba(233, 120, 14, 0.8);
+.menu-principal a:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ======================================= */
+/* Estilos do Dropdown Menu (Desktop) */
+/* ======================================= */
+
+.menu-item-dropdown {
+    position: relative;
+}
+
+.submenu-dropdown {
+    display: none; /* ESCONDIDO por padrão */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--cor-primaria);
+    list-style: none;
+    padding: var(--espaco-s) 0;
+    margin: 0;
+    min-width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 var(--espaco-xs) var(--espaco-xs);
+    z-index: 100;
+}
+
+.menu-item-dropdown:hover .submenu-dropdown {
+    display: block; /* REVELA a gaveta */
+}
+
+.submenu-dropdown li {
+    margin: 0;
+}
+
+.submenu-dropdown a {
+    display: block;
+    padding: var(--espaco-s) var(--espaco-m);
+    color: var(--cor-fundo);
+    font-size: var(--tamanho-base);
+    white-space: nowrap;
+}
+
+.submenu-dropdown a:hover {
+    background-color: var(--cor-primaria-escura);
+    color: var(--cor-fundo);
 }
 
 /* ======================================= */
@@ -59,71 +165,135 @@ header nav a:hover {
 .container {
     width: 90%;
     max-width: 1100px;
-    margin: 0 auto; /* A mágica para centralizar horizontalmente */
+    margin: 0 auto;
 }
 
 main section {
-    padding: 60px 0; /* Espaçamento em cima e embaixo das seções */
+    padding: var(--espaco-xxl) 0;
 }
 
 main section:nth-of-type(odd) {
-
+     background-color: var(--cor-fundo-alternativo);
 }
 
 h2 {
     text-align: center;
-    color: var(#da6b11);
+    color: var(--cor-primaria-escura);
     margin-top: 0;
-    margin-bottom: 40px;
-    font-size: 2em;
+    margin-bottom: var(--espaco-xl);
+    font-size: var(--tamanho-h2);
+}
+
+h3 {
+    font-size: var(--tamanho-h3);
+    color: var(--cor-texto);
+    margin-bottom: var(--espaco-m);
 }
 
 /* ======================================= */
-/* Estilos da Seção Quem Somos (Com Imagem) */
+/* Sistema de Grid de 12 Colunas */
+/* ======================================= */
+
+.grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--espaco-m);
+}
+
+.col-span-1 { grid-column: span 1; }
+.col-span-2 { grid-column: span 2; }
+.col-span-3 { grid-column: span 3; }
+.col-span-4 { grid-column: span 4; }
+.col-span-5 { grid-column: span 5; }
+.col-span-6 { grid-column: span 6; }
+.col-span-7 { grid-column: span 7; }
+.col-span-8 { grid-column: span 8; }
+.col-span-9 { grid-column: span 9; }
+.col-span-10 { grid-column: span 10; }
+.col-span-11 { grid-column: span 11; }
+.col-span-12 { grid-column: span 12; }
+
+/* ======================================= */
+/* Estilos da Seção Quem Somos (AGORA COM GRID) */
 /* ======================================= */
 
 .quem-somos-conteudo {
-    display: flex; /* Coloca os filhos (texto e imagem) lado a lado */
-    align-items: center; /* Centraliza verticalmente o texto e a imagem */
-    gap: 40px; /* Cria um bom espaço entre o texto e a imagem */
-    margin-top: 40px; /* Espaço entre o título e o conteúdo */
-    flex-wrap: wrap; /* Permite que os itens quebrem a linha em telas pequenas */
+    align-items: center;
+    gap: var(--espaco-xl);
+    margin-top: var(--espaco-xl);
 }
 
 .quem-somos-texto {
-    flex: 1; /* Faz o texto ocupar o espaço restante */
-    min-width: 300px; /* Garante que o texto não fique muito espremido */
-    text-align: justify; /* Alinha o texto de forma justificada */
-    line-height: 1.6; /* Aumenta o espaçamento entre as linhas para melhor leitura */
+    text-align: justify;
+    line-height: 1.6;
+    font-size: var(--tamanho-base);
 }
 
 .quem-somos-imagem {
-    flex: 1; /* Faz a imagem ocupar o espaço restante */
-    max-width: 500px; /* Limita o tamanho máximo da imagem */
-    text-align: center; /* Centraliza a imagem se ela for menor que o espaço */
+    max-width: 500px;
+    text-align: center;
 }
 
 .quem-somos-imagem img {
-    max-width: 100%; /* Garante que a imagem nunca ultrapasse o tamanho de sua caixa */
-    height: auto; /* Mantém a proporção da imagem */
-    border-radius: 8px; /* Adiciona bordas arredondadas à imagem */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave para destacar */
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--espaco-xs);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* ======================================= */
-/* ESTILOS DO CARROSSEL */
+/* Estilos dos Cards de Serviços */
+/* ======================================= */
+
+.servicos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--espaco-l);
+    margin-top: var(--espaco-xl);
+}
+
+.servico-card {
+    background-color: var(--cor-fundo);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--espaco-xs);
+    padding: var(--espaco-m);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.servico-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.servico-card h3 {
+    color: var(--cor-primaria-escura);
+    margin-top: 0;
+    margin-bottom: var(--espaco-s);
+    font-size: 1.25rem;
+}
+
+.servico-card p {
+    font-size: var(--tamanho-base);
+    line-height: 1.6;
+    color: var(--cor-texto-claro);
+    margin: 0;
+}
+
+/* ======================================= */
+/* ESTILOS DO CARROSSEL (Home) */
 /* ======================================= */
 
 .carrossel-container {
     position: relative;
     width: 100%;
     max-width: 600px;
-    margin: 40px auto;
+    margin: var(--espaco-xl) auto;
     overflow: hidden;
 }
 
 .carrossel-trilho {
-    display: flex;
+    display: flex; /* <-- O CARA QUE FAZ O CARROSSEL FUNCIONAR! */
     transition: transform 0.5s ease-in-out;
 }
 
@@ -147,15 +317,21 @@ h2 {
     left: 0;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    padding: 12px;
+    color: var(--cor-fundo);
+    padding: var(--espaco-s);
     box-sizing: border-box;
     text-align: center;
 }
 
-.info-cao h3, .info-cao p {
+.info-cao h3 {
+     font-size: 1.5rem;
+     margin-bottom: var(--espaco-xs);
+     color: var(--cor-primaria-escura);
+}
+.info-cao p {
+    font-size: var(--tamanho-pequeno);
     margin: 0;
-    padding: 2px;
+    padding: 0;
 }
 
 .carrossel-btn {
@@ -164,14 +340,24 @@ h2 {
     transform: translateY(-50%);
     z-index: 10;
     background-color: rgba(0, 0, 0, 0.5);
-    color: white;
+    color: var(--cor-fundo);
     border: none;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
+    width: var(--espaco-l);
+    height: var(--espaco-l);
+    font-size: 1.25rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+.carrossel-btn:focus {
+    outline: 2px solid white;
+    outline-offset: 1px;
+}
+
+.carrossel-btn:active {
+    background-color: rgba(0, 0, 0, 0.9);
+    transform: translateY(-50%) scale(0.95);
 }
 
 .carrossel-btn:hover {
@@ -179,119 +365,233 @@ h2 {
 }
 
 .btn-prev {
-    left: 10px;
+    left: var(--espaco-s);
 }
 
 .btn-next {
-    right: 10px;
+    right: var(--espaco-s);
 }
+
+/* ======================================= */
+/* Estilos de Badges e Tags (Entrega II) */
+/* ======================================= */
+
+.card-tags-container {
+    position: absolute;
+    top: var(--espaco-s); 
+    left: var(--espaco-s); 
+    z-index: 11; /* Mais alto que os botões (10) */
+    display: flex;
+    gap: var(--espaco-xs); 
+}
+
+.tag {
+    padding: 0.3rem var(--espaco-xs); 
+    font-size: var(--tamanho-pequeno); 
+    font-weight: bold;
+    color: var(--cor-texto-claro);
+    background-color: rgba(255, 255, 255, 0.9); 
+    border-radius: var(--espaco-xs); 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* (Opcional) Cores diferentes para tags específicas */
+.tag-macho {
+    background-color: var(--cor-secundaria); /* Azul */
+    color: var(--cor-fundo); /* Branco */
+}
+
+.tag-femea {
+    background-color: #e91e63; /* Rosa */
+    color: var(--cor-fundo); /* Branco */
+}
+
+.tag-filhote {
+    background-color: var(--cor-sucesso); /* Verde */
+    color: var(--cor-fundo); /* Branco */
+}
+
+
+/* ======================================= */
+/* ESTILOS DO RODAPÉ (FOOTER) */
+/* ======================================= */
+
 footer {
-    /* MUDE ESTA LINHA: */
-    background-color: var(--cor-destaque-forte); /* <-- DE "--cor-destaque" PARA "--cor-destaque-forte" */
-    
-    color: #ffffff;
-    padding-top: 50px;
+    background-color: var(--cor-primaria-escura);
+    color: var(--cor-fundo);
+    padding-top: var(--espaco-xl);
 }
+
+.footer-conteudo {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--espaco-xl);
+}
+
 .footer-coluna {
     flex: 1;
     min-width: 250px;
-    
-    /* ADICIONE ESTAS TRÊS LINHAS PARA CENTRALIZAR O CONTEÚDO DA COLUNA */
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
 }
 
-/* Estilos para a página de História */
-.historia-conteudo {
+.footer-logo {
+    height: 5.625rem; /* ~90px */
+    width: auto;
+    object-fit: contain;
+    margin-bottom: var(--espaco-m);
+}
+
+.footer-coluna h3 {
+    font-size: var(--tamanho-h3);
+    margin-bottom: var(--espaco-m);
+    border-bottom: 2px solid var(--cor-fundo);
+    padding-bottom: var(--espaco-s);
+    color: var(--cor-fundo);
+}
+
+.footer-coluna ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     text-align: center;
 }
 
-.historia-conteudo img {
-    max-width: 60%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
+.footer-coluna ul li {
+    margin-bottom: var(--espaco-s);
 }
 
-.historia-conteudo p {
-    font-size: 1.1em;
-    line-height: 1.7;
-    text-align: justify;
-    margin-bottom: 20px;
+.footer-coluna a {
+    color: var(--cor-fundo);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+    font-size: var(--tamanho-base);
 }
+
+.footer-coluna a:hover {
+    opacity: 0.8;
+}
+
+.footer-coluna address,
+.footer-coluna p {
+    font-style: normal;
+    line-height: 1.6;
+    font-size: var(--tamanho-base);
+    text-align: center;
+    margin-bottom: var(--espaco-s);
+}
+
+.footer-coluna strong {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-copyright {
+    text-align: center;
+    padding: var(--espaco-m) 0;
+    margin-top: var(--espaco-xl);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: var(--tamanho-pequeno);
+}
+
 /* ======================================= */
 /* Estilos da Página "Nossa História" */
 /* ======================================= */
 
-/* Um container de leitura confortável para todas as seções */
 .historia-conteudo,
 .nossavisao-conteudo,
-.valores-conteudo,
+.valores-container, /* Corrigido de .valores-conteudo */
 .comoajudar-conteudo {
-    max-width: 800px; /* Limita a largura para fácil leitura */
-    margin: 0 auto; /* Centraliza o container */
-    padding: 0 15px; /* Respiro lateral (para celular) */
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 var(--espaco-s);
 }
 
-/* Estilo para os parágrafos de texto longos */
 .historia-conteudo p {
-    font-size: 1.1em;
-    line-height: 1.7; /* Espaçamento entre linhas TOP */
-    text-align: justify; /* Texto alinhado como livro */
-    margin-bottom: 20px;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    text-align: justify;
+    margin-bottom: var(--espaco-m);
 }
 
-/* Estilo para a lista de dados da história */
 .historia-conteudo ul {
-    list-style: '🐾'; /* Ícone de patinha na lista! */
-    padding-left: 30px;
-    font-size: 1.1em;
+    list-style: '🐾';
+    padding-left: var(--espaco-l);
+    font-size: 1.1rem;
     line-height: 1.6;
-    margin: 20px 0;
+    margin: var(--espaco-m) 0;
 }
 
-/* Estilo para a seção "Nossa Visão" (centralizada) */
 .nossavisao-conteudo {
     text-align: center;
-    font-size: 1.2em;
+    font-size: 1.2rem;
     line-height: 1.6;
-    font-style: italic; /* Estilo de "citação" para a visão */
+    font-style: italic;
+    color: var(--cor-texto-claro);
 }
 
-/* Estilos para as listas ("Valores" e "Como Ajudar") */
-.valores-conteudo ul,
-.comoajudar-conteudo ul {
-    list-style: none; /* Remove as bolinhas pretas */
+.comoajudar-conteudo ul { /* Removido .valores-conteudo ul */
+    list-style: none;
     padding-left: 0;
-    font-size: 1.05em;
+    font-size: 1.05rem;
     line-height: 1.7;
 }
 
-.valores-conteudo li,
-.comoajudar-conteudo li {
+.comoajudar-conteudo li { /* Removido .valores-conteudo li */
     position: relative;
-    padding-left: 35px; /* Espaço para o emoji/ícone */
-    margin-bottom: 15px;
+    padding-left: var(--espaco-l);
+    margin-bottom: var(--espaco-s);
 }
 
-/* Adicionando ícones personalizados com CSS! */
-.valores-conteudo li::before,
-.comoajudar-conteudo li::before {
+.comoajudar-conteudo li::before { /* Removido .valores-conteudo li::before */
     position: absolute;
     left: 0;
     top: 0px;
     font-size: 1.2em;
+    content: '📦'; /* Adicionado ícone */
 }
 
-/* Ícones específicos */
-.valores-conteudo li::before {
-    content: '✨';
+/* ======================================= */
+/* Estilos dos Cards de Valores */
+/* ======================================= */
+
+/* .valores-container já definido acima */
+
+.cards-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--espaco-m);
+    margin-top: var(--espaco-xl);
 }
 
-.comoajudar-conteudo li::before {
-    content: '📦';
+.valor-card {
+    background-color: var(--cor-fundo);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--espaco-xs);
+    padding: var(--espaco-m);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.valor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.valor-card h3 {
+    color: var(--cor-primaria-escura);
+    margin-top: 0;
+    margin-bottom: var(--espaco-s);
+    font-size: 1.2rem;
+}
+
+.valor-card p {
+    font-size: var(--tamanho-base);
+    line-height: 1.6;
+    color: var(--cor-texto-claro);
+    margin: 0;
 }
 
 
@@ -301,27 +601,26 @@ footer {
 
 .cadastro-container {
     display: flex;
-    flex-wrap: wrap; 
-    gap: 40px; 
-    margin-top: 30px;
+    flex-wrap: wrap;
+    gap: var(--espaco-xl);
+    margin-top: var(--espaco-l);
 }
 
 .cadastro-formulario {
-    flex: 1; /* Ocupa 50% */
+    flex: 1;
     min-width: 300px;
 }
 
 .cadastro-info {
-    flex: 1; /* Ocupa 50% */
+    flex: 1;
     min-width: 300px;
 }
 
 .cadastro-info p {
-    font-size: 1.1em;
+    font-size: 1.1rem;
     line-height: 1.6;
+    margin-bottom: var(--espaco-s);
 }
-
-/* --- Novo Estilo de Formulário (Inspirado na Ref.) --- */
 
 .formulario-padrao {
     display: flex;
@@ -330,67 +629,108 @@ footer {
 
 .formulario-padrao label {
     font-weight: bold;
-    color: #555;
-    margin-top: 15px; 
-    margin-bottom: 8px; /* Mais espaço entre o label e o campo */
+    color: var(--cor-texto-claro);
+    margin-top: var(--espaco-s);
+    margin-bottom: var(--espaco-xs);
+    font-size: var(--tamanho-base);
 }
 
-/* O "Pulo do Gato" - Campos Arredondados */
 .formulario-padrao input[type="text"],
 .formulario-padrao input[type="email"],
 .formulario-padrao input[type="tel"],
+.formulario-padrao input[type="date"],
 .formulario-padrao select,
 .formulario-padrao textarea {
     width: 100%;
-    padding: 18px 20px; /* Mais "gordinho" */
-    border: 1px solid #ddd; /* Borda mais suave */
-    border-radius: 30px; /* SUPER ARREDONDADO! */
-    font-size: 1em;
-    font-family: sans-serif; /* Garante a mesma fonte */
-    box-sizing: border-box; 
+    padding: var(--espaco-s) var(--espaco-m);
+    border: 1px solid var(--cor-borda);
+    border-radius: 30px;
+    font-size: var(--tamanho-base);
+    font-family: var(--fonte-principal);
+    box-sizing: border-box;
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-/* Efeito ao clicar no campo */
 .formulario-padrao input:focus,
 .formulario-padrao select:focus,
 .formulario-padrao textarea:focus {
     outline: none;
-    border-color: var(--cor-destaque);
-    box-shadow: 0 0 8px rgba(229, 131, 42, 0.3); /* Sombra suave laranja */
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 8px rgba(229, 131, 42, 0.3);
+}
+
+.formulario-padrao input,
+.formulario-padrao select {
+    border: 1px solid var(--cor-borda);
+}
+
+.formulario-padrao input:valid:focus,
+.formulario-padrao input:valid {
+     /* border-color: var(--cor-sucesso); */
+}
+
+.formulario-padrao input:invalid:focus,
+.formulario-padrao input:invalid:not(:placeholder-shown) {
+    border-color: var(--cor-erro);
+    box-shadow: 0 0 8px rgba(220, 53, 69, 0.3);
 }
 
 .formulario-padrao textarea {
-    border-radius: 20px; /* Um pouco menos redondo para textareas */
+    border-radius: var(--espaco-m);
+    min-height: 120px;
 }
 
-/* O Novo Botão de Enviar */
 .btn-enviar {
-    background-color: var(--cor-destaque); /* Nossa cor laranja */
-    color: white;
-    padding: 18px 20px;
+    background-color: var(--cor-primaria);
+    color: var(--cor-fundo);
+    padding: var(--espaco-s) var(--espaco-m);
     border: none;
-    border-radius: 30px; /* SUPER ARREDONDADO! */
-    width: 100%; /* Ocupa 100% da coluna */
-    font-size: 1.1em;
+    border-radius: 30px;
+    width: 100%;
+    font-size: var(--tamanho-botao);
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 20px;
+    margin-top: var(--espaco-m);
+}
+
+.btn-enviar:focus {
+    outline: 2px solid var(--cor-primaria-escura);
+    outline-offset: 2px;
+}
+
+.btn-enviar:active {
+    background-color: var(--cor-primaria-escura);
+    transform: scale(0.98);
 }
 
 .btn-enviar:hover {
-    background-color: var(--cor-destaque-forte);
+    background-color: var(--cor-primaria-escura);
 }
 
-/* --- Estilo do Mapa --- */
-.mapa-container { /* Vamos usar um container para o mapa */
-    width: 100%;
-    height: 450px; /* Altura maior */
-    border-radius: 12px; /* Borda arredondada no mapa */
-    overflow: hidden; /* Força o mapa a ter as bordas arredondadas */
-    border: 1px solid #ddd;
+.formulario-padrao fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: var(--espaco-m);
 }
+
+.formulario-padrao legend {
+    font-size: var(--tamanho-h3);
+    font-weight: bold;
+    color: var(--cor-primaria);
+    padding: 0;
+    margin-bottom: var(--espaco-m);
+}
+
+.mapa-container {
+    width: 100%;
+    height: 450px;
+    border-radius: var(--espaco-s);
+    overflow: hidden;
+    border: 1px solid var(--cor-borda);
+}
+
 /* ======================================= */
 /* Estilos do Carrossel de Curiosidades */
 /* ======================================= */
@@ -398,11 +738,11 @@ footer {
     position: relative;
     width: 100%;
     max-width: 950px;
-    margin: 40px auto;
+    margin: var(--espaco-xl) auto;
     overflow: hidden;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background: #fdfdfd;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--espaco-xs);
+    background: var(--cor-fundo);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
@@ -413,6 +753,7 @@ footer {
 
 .curiosidades-item {
     min-width: 100%;
+    width: 100%;
     flex-shrink: 0;
 }
 
@@ -424,38 +765,47 @@ footer {
 }
 
 .curiosidades-texto {
-    padding: 25px;
+    padding: var(--espaco-m);
     text-align: center;
 }
 
 .curiosidades-texto h3 {
-    font-size: 1.3em;
-    color: var(--cor-destaque);
-    margin: 0 0 10px 0;
+    font-size: 1.3rem;
+    color: var(--cor-primaria);
+    margin: 0 0 var(--espaco-s) 0;
 }
 
 .curiosidades-texto p {
-    font-size: 1em;
+    font-size: var(--tamanho-base);
     line-height: 1.5;
     text-align: center;
     margin: 0;
 }
 
-/* Estilo dos Botões (Novas Classes) */
 .curiosidades-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     z-index: 10;
     background-color: rgba(255, 255, 255, 0.7);
-    color: #333;
+    color: var(--cor-texto);
     border: none;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
+    width: var(--espaco-l);
+    height: var(--espaco-l);
+    font-size: 1.25rem;
     cursor: pointer;
     transition: all 0.3s ease;
+}
+
+.curiosidades-btn:focus {
+    outline: 2px solid var(--cor-primaria-escura);
+    outline-offset: 1px;
+}
+
+.curiosidades-btn:active {
+    background-color: rgba(255, 255, 255, 1);
+    transform: translateY(-50%) scale(0.95);
 }
 
 .curiosidades-btn:hover {
@@ -464,78 +814,261 @@ footer {
 }
 
 .btn-cur-prev {
-    left: 10px;
+    left: var(--espaco-s);
 }
 
 .btn-cur-next {
-    right: 10px;
+    right: var(--espaco-s);
+}
+.modal-overlay {
+    display: none; /* ESCONDIDO POR PADRÃO (E SÓ ISSO!) */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    
+    /* Regras de centralização que serão ativadas com o 'display: flex' */
+    justify-content: center;
+    align-items: center;
+    
+    z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* A classe que o JS vai adicionar para MOSTRAR o modal */
+.modal-overlay.visivel {
+    display: flex; /* <-- O FLEX SÓ VEM PRA CÁ */
+    opacity: 1;
+}
+
+.modal-box {
+    background-color: var(--cor-fundo); /* Branco */
+    padding: var(--espaco-l) var(--espaco-xl); /* 32px 48px */
+    border-radius: var(--espaco-s); /* 16px */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    position: relative; /* Para o botão de fechar */
+    
+    /* Animação de "pular" para dentro */
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+/* Quando o modal está visível, a caixa "cresce" */
+.modal-overlay.visivel .modal-box {
+    transform: scale(1);
+}
+
+.modal-box h2 {
+    color: var(--cor-primaria-escura);
+    margin-top: 0;
+}
+
+.modal-btn-fechar {
+    position: absolute;
+    top: var(--espaco-s);
+    right: var(--espaco-s);
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--cor-texto-claro);
+    cursor: pointer;
 }
 /* ======================================= */
-/* REGRAS DE RESPONSIVIDADE */
+/* Estilos da Página de Doação */
 /* ======================================= */
 
-@media (max-width: 768px) {
+.opcoes-doacao-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--espaco-l);
+    margin-top: var(--espaco-xl);
+}
 
-    /* --- Ajustes no Cabeçalho --- */
-    header {
-        flex-direction: column;
-        gap: 20px;
-        padding: 20px;
+.opcao-box {
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--espaco-s);
+    padding: var(--espaco-l);
+    background-color: var(--cor-fundo);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.opcao-box h3 {
+    color: var(--cor-primaria-escura);
+    margin-top: 0;
+}
+
+.pix-qrcode {
+    max-width: 200px;
+    height: auto;
+    margin: var(--espaco-s) auto;
+    display: block;
+    border: 1px solid var(--cor-borda);
+}
+
+.btn-doar-gateway {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    background-color: var(--cor-primaria);
+    color: var(--cor-fundo);
+    padding: var(--espaco-s) var(--espaco-m);
+    border: none;
+    border-radius: 30px;
+    font-size: var(--tamanho-botao);
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: var(--espaco-m);
+    box-sizing: border-box; /* Garante que o padding não quebre o layout */
+}
+
+.btn-doar-gateway:hover {
+    background-color: var(--cor-primaria-escura);
+}
+
+/* Cor diferente para o PayPal (Exemplo) */
+.btn-gateway-paypal {
+    background-color: var(--cor-secundaria-escura); /* Azul */
+}
+.btn-gateway-paypal:hover {
+    background-color: var(--cor-secundaria); /* Azul mais claro */
+}
+
+/* ======================================= */
+/* REGRAS DE RESPONSIVIDADE (5 BREAKPOINTS) */
+/* ======================================= */
+
+/* --- Breakpoint LG: Large Devices (<= 1199.98px) --- */
+@media (max-width: 1199.98px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+/* --- Breakpoint MD: Medium Devices (<= 991.98px) --- */
+@media (max-width: 991.98px) {
+    .container {
+        max-width: 720px;
+    }
+    h2 { font-size: 1.8rem; }
+    h3 { font-size: 1.3rem; }
+    header { padding: var(--espaco-s) var(--espaco-m); }
+    .menu-principal li { margin-left: var(--espaco-m); }
+    .quem-somos-conteudo { gap: var(--espaco-l); }
+    .carrossel-item img { height: 400px; }
+    .cadastro-container { gap: var(--espaco-l); }
+    .curiosidades-item img { height: 450px; }
+    .curiosidades-btn { top: 225px; }
+}
+
+/* --- Breakpoint SM: Small Devices (<= 767.98px) --- */
+@media (max-width: 767.98px) {
+    .container {
+        max-width: 540px;
+        width: 95%;
+    }
+    .grid-12 {
+        grid-template-columns: 1fr;
+        gap: var(--espaco-l);
+    }
+    .col-span-1, .col-span-2, .col-span-3, .col-span-4, .col-span-5,
+    .col-span-6, .col-span-7, .col-span-8, .col-span-9, .col-span-10,
+    .col-span-11, .col-span-12 {
+        grid-column: span 1;
     }
 
-    header nav ul {
-        justify-content: center;
-        flex-wrap: wrap;
+    /* Menu Hambúrguer */
+    header { padding: var(--espaco-s) var(--espaco-m); height: 6rem; }
+    .logo { height: 4rem; }
+    .btn-abrir-menu { display: block; }
+    .menu-principal {
+        position: fixed; top: 0; left: -100%; width: 100%; height: 100vh;
+        background-color: var(--cor-primaria); display: flex; justify-content: center;
+        align-items: center; transition: left 0.4s ease-out; z-index: 1000;
     }
-
-    header nav li {
-        margin-left: 15px;
-        margin-right: 15px;
+    .menu-principal.menu-aberto { left: 0; }
+    .menu-principal .btn-fechar-menu {
+         display: block; position: absolute; top: var(--espaco-m);
+         right: var(--espaco-m); font-size: 3rem;
     }
+    .menu-principal ul { flex-direction: column; text-align: center; }
+    .menu-principal li { margin: var(--espaco-m) 0; }
+    .menu-principal a { font-size: 1.8rem; }
 
-    /* --- Ajustes no Conteúdo Principal --- */
-    main section {
-        padding: 40px 0;
-    }
+    /* Ajustes Gerais */
+    main section { padding: var(--espaco-xl) 0; }
+    h2 { font-size: 1.6rem; margin-bottom: var(--espaco-l); }
+    h3 { font-size: 1.2rem; margin-bottom: var(--espaco-s); }
 
-    h2 {
-        font-size: 1.8em;
-    }
+    /* Carrossel Home (Mobile) */
+    .carrossel-container { width: 100%; margin: var(--espaco-l) auto; }
+    .carrossel-item img { height: 300px; }
+    .carrossel-btn { width: var(--espaco-l); height: var(--espaco-l); font-size: 1rem; }
+    .btn-prev { left: var(--espaco-s); }
+    .btn-next { right: var(--espaco-s); }
 
-    /* --- Ajustes no Carrossel --- */
-    .carrossel-container {
+    /* Seção Quem Somos (Mobile) - Empilha */
+    .quem-somos-conteudo { flex-direction: column; gap: var(--espaco-l); text-align: center; }
+    .quem-somos-texto { text-align: center; }
+    .quem-somos-imagem { max-width: 90%; }
+
+    /* Página Cadastro (Mobile) - Empilha */
+    .cadastro-container { flex-direction: column; gap: var(--espaco-xl); }
+    .formulario-padrao input[type="text"],
+    .formulario-padrao input[type="email"],
+    .formulario-padrao input[type="tel"],
+    .formulario-padrao input[type="date"],
+    .formulario-padrao select,
+    .formulario-padrao textarea { padding: var(--espaco-s) var(--espaco-m); font-size: var(--tamanho-base); }
+    .btn-enviar { padding: var(--espaco-s) var(--espaco-m); font-size: var(--tamanho-base); }
+    .formulario-padrao legend { font-size: 1.2rem; }
+
+    /* Carrossel Curiosidades (Mobile) */
+    .curiosidades-container { width: 100%; margin: var(--espaco-l) auto; }
+    .curiosidades-item img { height: 250px; }
+    .curiosidades-btn { top: 125px; width: var(--espaco-l); height: var(--espaco-l); font-size: 1rem; }
+    .curiosidades-texto { padding: var(--espaco-m); }
+    .curiosidades-texto h3 { font-size: 1.1rem; }
+    .curiosidades-texto p { font-size: var(--tamanho-pequeno); line-height: 1.6; }
+
+    /* Rodapé (Mobile) - Empilha */
+    .footer-conteudo { flex-direction: column; text-align: center; gap: var(--espaco-l); }
+    .footer-coluna h3 { border-bottom: none; padding-bottom: 0; margin-bottom: var(--espaco-s); }
+
+} /* Fim do @media 767.98px */
+
+
+/* --- Breakpoint XS: Extra Small Devices (<= 575.98px) --- */
+@media (max-width: 575.98px) {
+    .container {
         width: 100%;
+        padding-left: var(--espaco-s);
+        padding-right: var(--espaco-s);
     }
-
-    .carrossel-item img {
-        height: 350px;
-    }
-    @media (max-width: 768px) {
-    /* ... (outras regras que já estão lá) ... */
-
-    /* --- Ajustes na Seção Quem Somos para Mobile --- */
-    .quem-somos-conteudo {
-        flex-direction: column; /* Empilha texto e imagem */
-        gap: 20px; /* Ajusta o espaço */
-        text-align: center; /* Centraliza o texto */
-    }
-
-    .quem-somos-texto {
-        text-align: center; /* Garante que o texto fique centralizado no mobile */
-    }
-
-    .quem-somos-imagem {
-        max-width: 90%; /* A imagem ocupa mais espaço no mobile */
-    }
-}
-@media (max-width: 768px) {
-    /* ... (outras regras mobile aqui) ... */
-
-    /* --- Ajustes na Página Cadastro --- */
-    .cadastro-container {
-        flex-direction: column; /* Empilha as colunas */
-        gap: 40px;
-    }
-}
-}
-
+    body { font-size: 0.95rem; }
+    h2 { font-size: 1.4rem; }
+    h3 { font-size: 1.1rem; }
+    header { height: 5.5rem; padding: var(--espaco-xs) var(--espaco-s); }
+    .logo { height: 3.5rem; }
+    .menu-principal a { font-size: 1.6rem; }
+    .carrossel-item img { height: 250px; }
+    .quem-somos-conteudo { gap: var(--espaco-m); }
+    .cadastro-container { gap: var(--espaco-l); }
+    .formulario-padrao input[type="text"],
+    .formulario-padrao input[type="email"],
+    .formulario-padrao input[type="tel"],
+    .formulario-padrao input[type="date"],
+    .formulario-padrao select,
+    .formulario-padrao textarea { padding: var(--espaco-s) var(--espaco-s); }
+    .curiosidades-item img { height: 200px; }
+    .curiosidades-btn { top: 100px; }
+    .curiosidades-texto p { font-size: var(--tamanho-pequeno); }
+    .footer-conteudo { gap: var(--espaco-m); }
+} /* Fim do @media 575.98px */

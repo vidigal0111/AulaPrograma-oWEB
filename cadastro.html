@@ -11,16 +11,25 @@
 
 <body>
     <header>
-        <img src="imagens/AUMIGOS LOGO.png" alt="Logo da ONG AUmigos do Amanhã" class="logo">
-        <nav>
-            <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="projeto.html">Nossa história</a></li>
-                <li><a href="cadastro.html">Doe Agora</a></li>
-             
-            </ul>
-        </nav>
-    </header>
+    <a href="index.html" class="logo-link"> <img src="imagens/AUMIGOS LOGO.png" alt="Logo da ONG AUmigos do Amanhã" class="logo">
+    </a>
+    
+    <nav class="menu-principal"> <button class="btn-fechar-menu">✕</button> <ul>
+    <li><a href="index.html">Início</a></li>
+
+    <li class="menu-item-dropdown">
+        <a href="projeto.html" class="dropdown-toggle">Como Ajudar</a>
+        
+        <ul class="submenu-dropdown">
+            <li><a href="cadastro.html">Seja Voluntário(a)</a></li>
+            <li><a href="doacao.html">Doe Agora</a></li>
+        </ul>
+    </li>
+</ul>
+    </nav>
+
+    <button class="btn-abrir-menu">☰</button>
+</header>
     <main class="container"> 
         <section>
     <h2>Ajude a Causa</h2>
@@ -31,31 +40,55 @@
     <div class="cadastro-container">
         
         <div class="cadastro-formulario">
-            <h3>Formulário de Interesse</h3>
-            <form class="formulario-padrao">
-                <label for="nome">Nome Completo:</label>
-                <input type="text" id="nome" name="nome">
+    <h3>Formulário de Cadastro</h3>
+    <p>Preencha seus dados para se tornar um voluntário ou apoiador oficial da AUmigos do Amanhã.</p>
 
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email">
+    <form class="formulario-padrao">
+        
+        <fieldset>
+            <legend>Dados Pessoais</legend>
 
-                <label for="telefone">Telefone:</label>
-                <input type="tel" id="telefone" name="telefone">
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" name="nome" required minlength="3">
 
-                <label for="interesse">Qual seu principal interesse?</label>
-                <select id="interesse" name="interesse">
-                    <option value="doar">Quero fazer uma Doação</option>
-                    <option value="voluntariar">Quero ser Voluntário(a)</option>
-                    <option value="adotar">Quero Adotar</option>
-                    <option value="apadrinhar">Quero apadrinhar um AUmigo</option>
-                </select>
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
 
-                <label for="mensagem">Mensagem (opcional):</label>
-                <textarea id="mensagem" name="mensagem" rows="5"></textarea>
+            <label for="cpf">CPF:</label>
+            <input type="tel" id="cpf" name="cpf" required placeholder="000.000.000-00">
 
-                <button type="submit" class="btn-enviar">Enviar Interesse</button>
-            </form>
-        </div>
+            <label for="telefone">Telefone / Celular:</label>
+            <input type="tel" id="telefone" name="telefone" required placeholder="(00) 90000-0000">
+
+            <label for="nascimento">Data de Nascimento:</label>
+            <input type="date" id="nascimento" name="nascimento" required>
+        </fieldset>
+
+        <fieldset>
+            <legend>Endereço</legend>
+
+            <label for="cep">CEP:</label>
+            <input type="tel" id="cep" name="cep" required placeholder="00000-000">
+
+            <label for="rua">Rua / Logradouro:</label>
+            <input type="text" id="rua" name="rua" required>
+
+            <label for="numero">Número:</label>
+            <input type="text" id="numero" name="numero" required>
+
+            <label for="bairro">Bairro:</label>
+            <input type="text" id="bairro" name="bairro" required>
+            
+            <label for="cidade">Cidade:</label>
+            <input type="text" id="cidade" name="cidade" required>
+
+            <label for="estado">Estado:</label>
+            <input type="text" id="estado" name="estado" required maxlength="2">
+        </fieldset>
+
+        <button type="submit" class="btn-enviar">Finalizar Cadastro</button>
+    </form>
+</div>
 
         <div class="cadastro-info">
     <h3>Nossa Sede</h3>
@@ -74,6 +107,28 @@
 
     </div>
 </section>
+ </section>
+
+    <div class="modal-overlay" id="modal-obrigado">
+        <div class="modal-box">
+            <button class="modal-btn-fechar" id="modal-fechar">✕</button>
+            <h2>🎉 Sucesso!</h2>
+            <p>Seus dados foram enviados. Entraremos em contato em breve para os próximos passos.</p>
+            <p>Obrigado por ajudar a mudar o amanhã dos nossos AUmigos!</p>
+        </div>
+    </div>
+    </main>
+</section>
+
+    <div class="modal-overlay" id="modal-obrigado">
+        <div class="modal-box">
+            <button class="modal-btn-fechar" id="modal-fechar">✕</button>
+            <h2>🎉 Sucesso!</h2>
+            <p>Seus dados foram enviados. Entraremos em contato em breve para os próximos passos.</p>
+            <p>Obrigado por ajudar a mudar o amanhã dos nossos AUmigos!</p>
+        </div>
+    </div>
+    </main>
 
     </main>
     <footer>
@@ -91,11 +146,9 @@
         <div class="footer-coluna">
             <h3>Navegação</h3>
             <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="projeto.html">Nossa História</a></li>
-                <li><a href="cadastro.html">Doe Agora</a></li>
-               
-            </ul>
+    <li><a href="index.html">Início</a></li>
+     <li><a href="projetos.html">Como Ajudar</a></li>
+     <li><a href="cadastro.html">Seja Voluntário(a)</a></li> </ul>
         </div>
 
         <div class="footer-coluna">
@@ -119,6 +172,7 @@
         <p>© 2025 ONG AUmigos do Amanhã - Todos os direitos reservados.</p>
     </div>
 </footer>
+<script src="https://unpkg.com/imask"></script>
 <script src="js/main.js"></script>
 </body>
 

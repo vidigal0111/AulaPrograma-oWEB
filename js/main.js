@@ -65,3 +65,89 @@ if (trilhoCuriosidades && itemsCuriosidades.length > 0 && btnNextCuriosidades &&
         moverTrilhoCuriosidades();
     });
 }
+/* ======================================= */
+/* CÓDIGO DO MENU HAMBÚRGUER */
+/* ======================================= */
+
+// 1. Seleciona os elementos
+const btnAbrir = document.querySelector('.btn-abrir-menu');
+const btnFechar = document.querySelector('.btn-fechar-menu');
+const menu = document.querySelector('.menu-principal');
+
+// 2. VERIFICA se eles existem na página
+if (btnAbrir && btnFechar && menu) {
+
+    // 3. Ouve o clique no botão de ABRIR
+    btnAbrir.addEventListener('click', () => {
+        menu.classList.add('menu-aberto');
+    });
+
+    // 4. Ouve o clique no botão de FECHAR
+    btnFechar.addEventListener('click', () => {
+        menu.classList.remove('menu-aberto');
+    });
+}
+/* ======================================= */
+/* CÓDIGO DAS MÁSCARAS DE FORMULÁRIO (Entrega I e III) */
+/* ======================================= */
+
+// 1. Seleciona os campos que vamos mascarar
+const campoCPF = document.querySelector('#cpf');
+const campoCEP = document.querySelector('#cep');
+const campoTelefone = document.querySelector('#telefone');
+
+// 2. VERIFICA se estamos na página que contém esses campos
+if (campoCPF && campoCEP && campoTelefone) {
+
+    // 3. Define as opções de máscara para cada campo
+    const cpfMaskOptions = {
+        mask: '000.000.000-00'
+    };
+    
+    const cepMaskOptions = {
+        mask: '00000-000'
+    };
+    
+    const telMaskOptions = {
+        mask: '(00) 00000-0000'
+    };
+
+    // 4. "Inicia" a máscara em cada campo
+    // A função IMask() vem da biblioteca que importamos!
+    const cpfMask = IMask(campoCPF, cpfMaskOptions);
+    const cepMask = IMask(campoCEP, cepMaskOptions);
+    const telMask = IMask(campoTelefone, telMaskOptions);
+
+} // Fim do 'if' das máscaras
+
+const formularioCadastro = document.querySelector('.cadastro-formulario .formulario-padrao');
+const modalObrigado = document.querySelector('#modal-obrigado');
+const btnFecharModal = document.querySelector('#modal-fechar');
+
+// 2. VERIFICA se estamos na página de cadastro (que tem esses elementos)
+if (formularioCadastro && modalObrigado && btnFecharModal) {
+
+    // 3. Ouve o "envio" (submit) do formulário
+    formularioCadastro.addEventListener('submit', function(evento) {
+        
+        // MUITO IMPORTANTE: Impede o formulário de recarregar a página
+        evento.preventDefault(); 
+        
+        // Mostra o modal adicionando a classe "visivel"
+        modalObrigado.classList.add('visivel');
+    });
+
+    // 4. Ouve o clique no botão "Fechar" (o X)
+    btnFecharModal.addEventListener('click', function() {
+        modalObrigado.classList.remove('visivel');
+    });
+
+    // 5. (Bônus) Fecha o modal se o usuário clicar fora da caixa (no fundo preto)
+    modalObrigado.addEventListener('click', function(evento) {
+        // Se o clique foi no próprio overlay (fundo) e não na caixa...
+        if (evento.target === modalObrigado) {
+            modalObrigado.classList.remove('visivel');
+        }
+    });
+
+}
