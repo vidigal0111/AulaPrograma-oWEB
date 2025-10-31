@@ -52,4 +52,4 @@ Este projeto foi construído de forma incremental, cumprindo os seguintes requis
 
 ### 👨‍💻 **Autor**
 
-* **[Thiago Thomaz Silva Vidigal]**
+* **Thiago Thomaz Silva Vidigal**
