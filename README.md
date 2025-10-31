@@ -8,7 +8,7 @@ Este projeto é um website institucional completo e responsivo para a ONG fictí
 
 Você pode acessar o site completo em funcionamento no seguinte link:
 
-**(https://vidigal0111.github.io/AulaPrograma-oWEB/doacao.html)**
+**(https://vidigal0111.github.io/AulaPrograma-oWEB/)**
 
 ---
 
