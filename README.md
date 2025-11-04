@@ -64,6 +64,7 @@ Este projeto foi dividido em 4 entregas principais, abrangendo um stack front-en
 * **JavaScript (ES6+):** Manipulação do DOM, `fetch` (SPA), History API, `localStorage` (Modo Escuro), Event Listeners.
 * **IMask.js:** Biblioteca externa para as máscaras de formulário.
 * **GitHub Pages:** Hospedagem e deploy do site.
+* **Netfly:** Deploy do site.
 
 ---
 
