@@ -200,4 +200,46 @@ document.addEventListener('DOMContentLoaded', () => {
     if (pageScripts[initialPage]) {
         pageScripts[initialPage]();
     }
+    /* ======================================= */
+    /* LIGAÇÃO DIRETA PARA TESTE - ADICIONE ISTO */
+    /* ======================================= */
+    console.log("Forçando a inicialização dos scripts!");
+    initCarrosselHome();
+    initCarrosselCuriosidades();
+    initMascarasFormulario();
+    initModalFeedback();
 });
+
+
+    
+
+/* ======================================= */
+/* CÓDIGO DO MODO ESCURO */
+/* ======================================= */
+
+// 1. Seleciona os elementos
+const themeToggle = document.querySelector('#checkbox-theme');
+
+// 2. Verifica a preferência salva no localStorage
+const currentTheme = localStorage.getItem('theme');
+
+// 3. Aplica o tema salvo (se existir)
+if (currentTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+    if (themeToggle) themeToggle.checked = true;
+}
+
+// 4. Ouve o clique no switch
+if (themeToggle) {
+    themeToggle.addEventListener('change', function() {
+        if (this.checked) {
+            // Se marcado, ativa o modo escuro
+            document.body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark'); // Salva a preferência
+        } else {
+            // Se desmarcado, remove o modo escuro
+            document.body.classList.remove('dark-mode');
+            localStorage.setItem('theme', 'light'); // Salva a preferência
+        }
+    });
+}

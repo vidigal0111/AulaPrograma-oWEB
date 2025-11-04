@@ -12,6 +12,25 @@
     --cor-borda: #dddddd;          /* Cinza para bordas */
     --cor-sucesso: #28a745;        /* Verde */
     --cor-erro: #dc3545;           /* Vermelho */
+    
+    /* ======================================= */
+/* ESTILOS DO MODO ESCURO
+/* ======================================= */
+
+/* Define as variáveis do modo escuro */
+body.dark-mode {
+    --cor-fundo: #121212; /* Preto suave */
+    --cor-fundo-alternativo: #1e1e1e; /* Preto um pouco mais claro */
+    --cor-texto: #e0e0e0; /* Branco suave */
+    --cor-texto-claro: #999999; /* Cinza claro */
+    --cor-borda: #444444; /* Borda cinza escura */
+
+    /* Inverte as cores primárias (ex: laranja claro vira escuro) */
+    --cor-primaria: #d16b16; /* Laranja escuro vira o principal */
+    --cor-primaria-escura: #eec187; /* Laranja claro vira o hover */
+
+    /* (Cores de feedback e secundárias podem ser mantidas ou ajustadas) */
+}
 
     /* == Tipografia == */
     --fonte-principal: sans-serif;
@@ -86,7 +105,7 @@ footer {
     display: none;
     border: none;
     background: none;
-    color: var(--cor-fundo);
+    color: var(--cor-texto);
     font-size: 2.5rem;
     cursor: pointer;
 }
@@ -107,11 +126,11 @@ footer {
     font-weight: bold;
     font-size: var(--tamanho-link-menu);
     transition: color 0.3s ease;
-    color: var(--cor-fundo);
+    color: var(--cor-texto);
 }
 
 .menu-principal a:hover {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--cor-texto-claro)
 }
 
 /* ======================================= */
@@ -148,7 +167,7 @@ footer {
 .submenu-dropdown a {
     display: block;
     padding: var(--espaco-s) var(--espaco-m);
-    color: var(--cor-fundo);
+    color: var(--cor-texto);
     font-size: var(--tamanho-base);
     white-space: nowrap;
 }
@@ -939,6 +958,57 @@ footer {
 }
 .btn-gateway-paypal:hover {
     background-color: var(--cor-secundaria); /* Azul mais claro */
+}
+
+/* --- Estilos do Switch de Tema --- */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--espaco-xs);
+    margin-top: var(--espaco-s);
+}
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px; /* Tamanho do switch */
+    height: 24px;
+}
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--cor-borda);
+    transition: .4s;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px; /* Tamanho da bolinha */
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+}
+input:checked + .slider {
+    background-color: var(--cor-primaria);
+}
+input:checked + .slider:before {
+    transform: translateX(20px); /* Distância que a bolinha anda */
+}
+.slider.round {
+    border-radius: 34px;
+}
+.slider.round:before {
+    border-radius: 50%;
 }
 
 /* ======================================= */
